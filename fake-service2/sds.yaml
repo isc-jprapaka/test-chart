@@ -1,0 +1,29 @@
+apiVersion: v1
+softwareVersions:
+- name: IRIS
+  version: 1.2.3
+- name: AtScale
+  version: 1.2.3
+endpoints:
+- title: How to run the Speedtest Demo
+  group: Documentation
+  description: A step-by-step guide to running the demo
+  type: browsing
+  url: https://usconfluence.iscinternal.com/display/FS/How+to+Run+the+HTAP+Demo+using+Smart+Data+Services
+  contexts:
+  - portal
+  - catalog
+  - documentation
+  visibility: foreign
+  presentation: link
+- title: Speedtest Demo Walkthrough Video
+  group: Documentation
+  description: Video showcasing how to run the demo as a smart data service.
+  type: browsing
+  url: https://youtu.be/oD11YrOywL4
+  contexts:
+    - portal
+    - catalog
+    - documentation
+  visibility: foreign
+  presentation: link
