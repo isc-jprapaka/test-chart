@@ -1,0 +1,6 @@
+apiVersion: v1
+softwareVersions:
+- name: IRIS
+  version: 1.2.3
+- name: AtScale
+  version: 1.2.3
