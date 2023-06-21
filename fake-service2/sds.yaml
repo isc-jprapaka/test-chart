@@ -27,3 +27,17 @@ endpoints:
     - documentation
   visibility: foreign
   presentation: link
+sections:
+- label: Miscellaneous
+  fields:
+  - field: preExpandDatabase
+    type: boolean
+    value: "false"
+    label: Pre-expand the database
+    editable: "true"
+  - field: databaseSizeInGb
+    type: number
+    value: "40"
+    label: Database size in GB
+    editable: "true"
+    condition: preExpandDatabase="true"
