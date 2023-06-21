@@ -7,7 +7,7 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-06-21T16:13:27.1458501-04:00"
+    created: "2023-06-21T17:42:07.3292986-04:00"
     description: A Helm chart for Kubernetes
     digest: e5bca877517e057b0a3669d6112ec9f08fc4cfc279b0f996cbba867e5a66065f
     name: fake-service
@@ -22,12 +22,12 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-06-21T16:13:27.1458501-04:00"
+    created: "2023-06-21T17:42:07.3298152-04:00"
     description: A Helm chart for Kubernetes
-    digest: 9dd98eb38f4b3c320fe98a8e7f55a1f31045eaa54043a4c5f97f92c6ee29b23e
+    digest: de74990aa5f63243088ed74e14b4cdd0e1a2793fcd644f3e8746504105aa990e
     name: fake-service2
     type: application
     urls:
     - https://isc-jprapaka.github.io/test-chart/fake-service2-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-21T16:13:27.1448513-04:00"
+generated: "2023-06-21T17:42:07.3281435-04:00"
