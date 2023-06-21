@@ -40,4 +40,4 @@ sections:
     value: "40"
     label: Database size in GB
     editable: "true"
-    condition: preExpandDatabase="true"
+    condition: preExpandDatabase=true
