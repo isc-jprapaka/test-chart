@@ -26,6 +26,6 @@ appVersion: "1.3.0"
 icon: https://intersystems.github.io/sds-repo-core-unreleased/isc-iris-db/icon.png
 
 annotations:
-  intersystems/sds-title: InterSystems IRIS Database FAKE NO CHANGE
+  intersystems/sds-title: InterSystems IRIS Database FAKE SAME
   intersystems/sds-organization: InterSystems Corporation
   intersystems/sds-category: core,database
