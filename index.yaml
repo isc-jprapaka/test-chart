@@ -7,7 +7,7 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-08-28T12:55:27.1297377-04:00"
+    created: "2023-08-28T13:15:36.0160802-04:00"
     description: A Helm chart for Kubernetes
     digest: e5bca877517e057b0a3669d6112ec9f08fc4cfc279b0f996cbba867e5a66065f
     name: fake-service
@@ -22,7 +22,7 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-08-28T12:55:27.1302819-04:00"
+    created: "2023-08-28T13:15:36.0160802-04:00"
     description: A Helm chart for Kubernetes
     digest: 09861eecd43fc4b3e36cabf2445af6f2a0c0a64d35f7f78451299ac18dc050fa
     name: fake-service2
@@ -30,6 +30,26 @@ entries:
     urls:
     - https://isc-jprapaka.github.io/test-chart/fake-service2-0.1.0.tgz
     version: 0.1.0
+  isc-iris-db:
+  - annotations:
+      intersystems/sds-category: core,database
+      intersystems/sds-organization: InterSystems Corporation
+      intersystems/sds-title: InterSystems IRIS Database
+    apiVersion: v2
+    appVersion: 1.3.0
+    created: "2023-08-28T13:15:36.0170831-04:00"
+    description: Use this service to securely store your solution's tables. This service
+      collaborates with many other services as either a destination for data or a
+      source of data. A Kafka Connector Service for instance, can only be deployed
+      if attached to an IRIS database. On the other hand, a Live Aggregation Service
+      needs an IRIS database as the source of the live data to aggregate.
+    digest: 29f0e40646ac1fc3c2837369b83bcd5574ccc98eaf580467047caad20ee4b99d
+    icon: https://intersystems.github.io/sds-repo-core-unreleased/isc-iris-db/icon.png
+    name: isc-iris-db
+    type: application
+    urls:
+    - https://isc-jprapaka.github.io/test-chart/isc-iris-db-1.3.0.tgz
+    version: 1.3.0
   isc-iris-db-fake:
   - annotations:
       intersystems/sds-category: core,database
@@ -37,7 +57,7 @@ entries:
       intersystems/sds-title: InterSystems IRIS Database
     apiVersion: v2
     appVersion: 1.3.0
-    created: "2023-08-28T12:55:27.1308169-04:00"
+    created: "2023-08-28T13:15:36.0170831-04:00"
     description: Use this service to securely store your solution's tables. This service
       collaborates with many other services as either a destination for data or a
       source of data. A Kafka Connector Service for instance, can only be deployed
@@ -50,4 +70,4 @@ entries:
     urls:
     - https://isc-jprapaka.github.io/test-chart/isc-iris-db-fake-1.3.0.tgz
     version: 1.3.0
-generated: "2023-08-28T12:55:27.1291887-04:00"
+generated: "2023-08-28T13:15:36.0150801-04:00"
