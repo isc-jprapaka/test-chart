@@ -1,0 +1,42 @@
+{{- if eq (toString .Values.designer.enabled) "true" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: designer
+  namespace: {{.Release.Name}}
+  labels:
+    {{- include "atscale.labels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  ports: 
+    - port: 10500
+      targetPort: 10500
+      protocol: TCP
+      name: atscaleport
+    - port: 10501
+      targetPort: 10501
+      protocol: TCP
+      name: atscaleport2
+    - port: 10502
+      targetPort: 10502
+      protocol: TCP
+      name: licenseport
+    - port: 10503
+      targetPort: 10503
+      protocol: TCP
+      name: authport
+    - port: 10513
+      targetPort: 10513
+      protocol: TCP
+      name: javaport1
+    - port: 10514
+      targetPort: 10514
+      protocol: TCP
+      name: javaport2
+    - port: 11111
+      targetPort: 11111
+      protocol: TCP
+      name: atscalejdbcport
+  selector:
+    {{- include "atscale.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "atscale.fullname" . }}
+  labels:
+    {{- include "atscale.labels" . | nindent 4 }}
+    {{- with .Values.podAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+
+spec:
+  selector:
+    matchLabels:
+      {{- include "atscale.selectorLabels" . | nindent 6 }}
+  serviceName: designer
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "atscale.selectorLabels" . | nindent 8 }}
+
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
+      imagePullSecrets:
+          {{- if .Values.requiredSecrets.intersystemsContainerRegistrySecret }}    
+          - name: {{ .Values.requiredSecrets.intersystemsContainerRegistrySecret }}
+          {{- end }}
+      serviceAccountName: {{ include "atscale.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+           {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.atscale.image.registry }}/{{ .Values.atscale.image.repository }}:{{ .Chart.AppVersion }}"
+          env:
+            - name: ATSCALE_LB_DNS_NAME
+              value: {{ .Values.designer.loadBalancerDNSName }}
+            - name: IRIS_JDBC_URL
+              value: jdbc:IRIS://iris-svc.{{ .Release.Name }}:1972/B360
+            - name: IRIS_USER
+              value: {{ .Values.iris.username }}
+            - name: IRIS_PASSWORD
+              value: {{ .Values.iris.password }}
+
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: atscaleport
+              containerPort: 10500
+              protocol: TCP
+            - name: licenseport
+              containerPort: 10502
+              protocol: TCP
+            - name: authport
+              containerPort: 10503
+              protocol: TCP
+            - name: javaport1
+              containerPort: 10513
+              protocol: TCP
+            - name: javaport2
+              containerPort: 10514
+              protocol: TCP
+            - name: atscalejdbcport
+              containerPort: 11111
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: atscaleport
+            initialDelaySeconds: 100
+            failureThreshold: 5
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command:
+              - cat
+              - /opt/atscale/conf/configuration.applied
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          # startupProbe:
+          #   httpGet:
+          #     path: /
+          #     port: atscaleport
+          #   failureThreshold: 120
+          #   periodSeconds: 5
+          volumeMounts:
+          - name: vol-atscale-license-secret
+            mountPath: "/etc/atscale-license-secret"
+          - name: pv-atscale-data
+            mountPath: "/opt/atscale/data"
+          - name: pv-atscale-conf
+            mountPath: "/opt/atscale/conf"
+          - name: pv-atscale-logs
+            mountPath: "/opt/atscale/logs"
+        
+          resources:
+            requests:
+              cpu: {{ .Values.compute.irisaa.cpu }}
+              memory: {{ .Values.compute.irisaa.memory }}
+          
+      volumes:
+      - name: vol-atscale-license-secret
+        secret:
+          secretName: {{ .Values.requiredSecrets.atScaleLicense }}
+          defaultMode: 0444
+      - name: pv-atscale-data
+        persistentVolumeClaim:
+          claimName: pvc-atscale-data
+      - name: pv-atscale-conf
+        persistentVolumeClaim:
+          claimName: pvc-atscale-conf
+      - name: pv-atscale-logs
+        persistentVolumeClaim:
+          claimName: pvc-atscale-logs
+      
+      {{- if .Values.compute.irisaa.nodeTypeSelector }}
+      nodeSelector:
+        sds/node-type: {{ .Values.compute.irisaa.nodeTypeSelector }}
+      {{- end }}
+      tolerations:
+      - key: sds/select-worker
+        value: select-worker
+        effect: NoSchedule
+      

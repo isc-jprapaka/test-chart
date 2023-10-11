@@ -1,0 +1,23 @@
+{{- if eq (toString .Values.ui.enabled) "true" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: business360-frontend
+  namespace: {{ .Release.Name }}
+spec:
+  type: LoadBalancer
+  selector:
+    intersystems.com/component: webgateway
+    intersystems.com/kind: IrisCluster
+    intersystems.com/role: webgateway
+  ports:
+    {{- if eq .Values.deploymentMode "dev" }}
+    - port: {{ .Values.ui.port }}
+      targetPort: 4200
+      name: webserver
+    {{- else }}
+    - port: {{ .Values.ui.port }}
+      targetPort: 80
+      name: webserver
+    {{- end }}  
+{{- end }}

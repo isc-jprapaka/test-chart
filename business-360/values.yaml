@@ -1,0 +1,163 @@
+# Default values for sds-control-plane.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentType: prod
+defaultRegistry: containers.intersystems.com/iscinternal/business360/helm
+skaffold: false
+# Used to describe environment variables
+# # Used to specify where the deployment is being done
+# cloudProvider: dev
+# cloudProviderRegion: dev
+deployServicesFromLocalRegistry: false
+
+
+image:
+  registry: containers.intersystems.com/iscinternal/business360/helm
+  frontendRepository: frontend
+  backendRepository: iris
+
+atscale:
+  image:
+    registry: containers.intersystems.com/iscinternal/business360/helm
+    repository: irisaa
+    pullPolicy: IfNotPresent
+
+b360_frontend:
+  image: containers.intersystems.com/iscinternal/business360/helm/frontend
+
+b360_backend:
+  image: containers.intersystems.com/iscinternal/business360/helm/iris
+
+b360_frontend_dev:
+  image: business360/frontend
+  version: 2.4.0.33
+
+compute:
+  database:
+    nodeTypeSelector: ""
+    cpu: 8
+    memory: 512Mi
+  frontend:
+    nodeTypeSelector: ""
+    cpu: 8
+    memory: 512Mi
+  irisaa:
+    nodeTypeSelector: ""
+    cpu: 2
+    memory: 4Gi 
+
+# Used to specify the storage required for cp_backend
+storageDB: 
+  size : 100Gi
+  storageClass : ssd-storageclass-5
+storageWIJ: 
+  size: 10Gi
+  storageClass : ssd-storageclass-5
+storageJournal1: 
+  size: 200Gi
+  storageClass : ssd-storageclass-5
+storageJournal2: 
+  size: 200Gi
+  storageClass : ssd-storageclass-5
+storageData: 
+  size : 10Gi
+  storageClass : ssd-storageclass-1
+storageConf: 
+  size: 10Gi
+  storageClass : ssd-storageclass-1
+storageLogs: 
+  size: 10Gi
+  storageClass : ssd-storageclass-1
+
+
+mirrored: false
+
+# These are the secret fields needed to successfully deploy.
+# They will be injected by the control plane:
+requiredSecrets:
+  irisLicense: ""
+  intersystemsContainerRegistrySecret: ""
+  initialPasswordHashSecret: security-config-iris-auth-secret
+  atScaleLicense: at-scale-license-secret
+
+autoscaling:
+  enabled: false
+  # minReplicas: 1
+  # maxReplicas: 100
+  # targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+superServer:
+  enabled: "false"
+  hostname: "localhost"
+  port: "10000"
+
+management:
+  enabled: "false"
+  hostname: "localhost"
+  port: "10001"
+
+ui:
+  enabled: "false"
+  hostname: "localhost"
+  port: "10002"
+
+nameOverride: b360
+fullnameOverride: b360
+fileDirBasePath: /intersystems/FileInterface
+connectorTmpFilesBasePath: /intersystems/ConnectorTmpFiles
+fsDataLakeDemoJDBCURL: 
+
+# Default values for atscale.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+cloudProvider: "dev"
+cloudProviderRegion: "dev-region"
+
+replicaCount: 1
+
+iris:
+  username: SuperUser
+  password: sys
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+designer:
+  enabled: true
+  port: 10500
+  licensePort: 10502
+  authPort: 10503
+  loadBalancerDNSName: localhost
+  hostname: localhost
+
+atscalejdbc:
+  port: 11111
+
+atscalemdx:
+  port: 10502

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: b360-iris-cpf
+  namespace: {{ .Release.Name }}
+
+data:
+
+{{ if eq .Values.deploymentType "prod" }}
+    data.cpf: | 
+        [Startup]
+        SystemMode=LIVE
+
+{{ else }}
+    data.cpf: | 
+        [Startup]
+        SystemMode=TEST
+{{end}}
+    CSP-merge.ini: |
+        [business360-iris-data-0]
+        Username=CSPSystem
+        Password=]]]U1lT
