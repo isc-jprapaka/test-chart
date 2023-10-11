@@ -7,10 +7,10 @@ entries:
       intersystems/sds-title: TotalView for Asset Management
     apiVersion: v2
     appVersion: 2.4.1
-    created: "2023-10-11T15:10:25.344800626Z"
+    created: "2023-10-11T15:23:22.496947068Z"
     description: Use this service to deploy the TotalView for Asset Management Application
-    digest: 9b3f273ee8d29af46f0ba101f59cdb0c2e712b16d63d67a1f3c6ff8b5e22be98
-    icon: https://intersystems.github.io/sds-repo-samples-unreleased/business-360/icon.png
+    digest: debea7ba42e68c7debce46170fec6746c2bc0b8b6ac91a2cfdbbf0620d59590a
+    icon: https://isc-jprapaka.github.io/test-chart/business-360/icon.png
     name: business-360
     type: application
     urls:
@@ -23,7 +23,7 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-11T15:10:25.345292183Z"
+    created: "2023-10-11T15:23:22.497387983Z"
     description: A Helm chart for Kubernetes
     digest: e5bca877517e057b0a3669d6112ec9f08fc4cfc279b0f996cbba867e5a66065f
     name: fake-service
@@ -38,7 +38,7 @@ entries:
       intersystems/sds-title: fake sds service
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-11T15:10:25.345753333Z"
+    created: "2023-10-11T15:23:22.497791836Z"
     description: A Helm chart for Kubernetes
     digest: 09861eecd43fc4b3e36cabf2445af6f2a0c0a64d35f7f78451299ac18dc050fa
     name: fake-service2
@@ -53,7 +53,7 @@ entries:
       intersystems/sds-title: Nginx FAKE FOr ImagePull
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-11T15:10:25.346223147Z"
+    created: "2023-10-11T15:23:22.498384479Z"
     description: A Helm chart for Kubernetes
     digest: 596527c1c1a173dc02336c7355fb9e46bb53d067437010bba7dcad4a3ee7f976
     name: fake829
@@ -68,7 +68,7 @@ entries:
       intersystems/sds-title: InterSystems IRIS Database
     apiVersion: v2
     appVersion: 1.3.2
-    created: "2023-10-11T15:10:25.347614091Z"
+    created: "2023-10-11T15:23:22.500126347Z"
     description: Use this service to securely store your solution's tables. This service
       collaborates with many other services as either a destination for data or a
       source of data. A Kafka Connector Service for instance, can only be deployed
@@ -87,7 +87,7 @@ entries:
       intersystems/sds-title: InterSystems IRIS Database
     apiVersion: v2
     appVersion: 1.3.0
-    created: "2023-10-11T15:10:25.347032793Z"
+    created: "2023-10-11T15:23:22.49951461Z"
     description: Use this service to securely store your solution's tables. This service
       collaborates with many other services as either a destination for data or a
       source of data. A Kafka Connector Service for instance, can only be deployed
@@ -107,7 +107,7 @@ entries:
       intersystems/sds-title: InterSystems IRIS Database
     apiVersion: v2
     appVersion: 1.3.0
-    created: "2023-10-11T15:10:25.348304084Z"
+    created: "2023-10-11T15:23:22.500743912Z"
     description: Use this service to securely store your solution's tables. This service
       collaborates with many other services as either a destination for data or a
       source of data. A Kafka Connector Service for instance, can only be deployed
@@ -120,4 +120,4 @@ entries:
     urls:
     - https://isc-jprapaka.github.io/test-chart/isc-iris-db-fake-1.3.0.tgz
     version: 1.3.0
-generated: "2023-10-11T15:10:25.343217897Z"
+generated: "2023-10-11T15:23:22.495750314Z"
